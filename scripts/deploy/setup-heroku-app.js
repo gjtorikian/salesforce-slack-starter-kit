@@ -105,9 +105,8 @@ const setupHerokuApp = () => {
         { silent: true }
     );
     sh.cd('../../');
-    sh.exec(
-        `git push git@heroku.com:${sh.env.HEROKU_APP_NAME}.git ${sh.env.CURRENT_BRANCH}:main`
-    );
+    sh.exec(`heroku git:remote -a sfdc-contact-editor`);
+    sh.exec(`git push heroku main`);
 
     log(
         chalk.green(

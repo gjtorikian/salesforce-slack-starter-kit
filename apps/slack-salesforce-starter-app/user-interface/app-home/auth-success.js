@@ -2,7 +2,7 @@
 
 const { HomeTab, Blocks } = require('slack-block-builder');
 
-const authorization_success_screen = (username) => {
+const authorization_success_screen = (username, event_ts) => {
     const homeTab = HomeTab({
         callbackId: 'authorization-salesforce-success',
         privateMetaData: 'authenticated'
@@ -10,9 +10,7 @@ const authorization_success_screen = (username) => {
         Blocks.Header({ text: 'Connected to Salesforce' }),
         Blocks.Divider(),
         Blocks.Section({
-            text:
-                'You are successfully authenticated to Salesforce with username ' +
-                username
+            text: `It's ${event_ts}, and you are successfully authenticated to Salesforce as ${username}.`
         })
     );
     return homeTab.buildToJSON();

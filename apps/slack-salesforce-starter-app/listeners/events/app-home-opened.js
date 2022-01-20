@@ -13,20 +13,24 @@ const appHomeOpenedCallback = async ({ client, event, body, context }) => {
     }
     try {
         slack_user.userId = event.user;
+        let event_ts = event.event_ts;
         if (context.hasAuthorized) {
             const conn = context.sfconnection;
             const currentuser = await conn.identity();
             await client.views.publish({
                 // Use the user ID associated with the event
                 user_id: slack_user.userId,
-                view: authorization_success_screen(currentuser.username)
+                view: authorization_success_screen(
+                    currentuser.username,
+                    event_ts
+                )
             });
         } else {
             // Call views.publish with the built-in client
             await client.views.publish({
                 // Use the user ID associated with the event
                 user_id: event.user,
-                view: authorization_screen(buildOAuthURL())
+                view: authorization_screen(buildOAuthURL(), event_ts)
             });
         }
     } catch (error) {
