@@ -2,7 +2,11 @@
 
 const { HomeTab, Blocks } = require('slack-block-builder');
 
-const authorization_success_screen = (username, event_ts) => {
+const authorization_success_screen = async (username, event_ts, connection) => {
+    const result = await connection.query(
+        `Select Name, Description FROM Contact`
+    );
+    console.log(result);
     const homeTab = HomeTab({
         callbackId: 'authorization-salesforce-success',
         privateMetaData: 'authenticated'

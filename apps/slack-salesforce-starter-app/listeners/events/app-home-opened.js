@@ -22,7 +22,8 @@ const appHomeOpenedCallback = async ({ client, event, body, context }) => {
                 user_id: slack_user.userId,
                 view: authorization_success_screen(
                     currentuser.username,
-                    event_ts
+                    event_ts,
+                    conn
                 )
             });
         } else {
