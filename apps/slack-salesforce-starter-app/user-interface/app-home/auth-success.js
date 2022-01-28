@@ -19,8 +19,8 @@ const authorization_success_screen = async (username, event_ts, conn) => {
         Blocks.Section({
             text: `It's ${event_ts}, and you are successfully authenticated to Salesforce as ${username}.`
         }),
-        Blocks.Divider(),
         Blocks.Header({ text: 'Contacts' }),
+        Blocks.Divider(),
         Blocks.Section({
             text: fields.join('\n')
         })
