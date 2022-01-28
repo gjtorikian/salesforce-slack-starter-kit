@@ -20,7 +20,7 @@ const appHomeOpenedCallback = async ({ client, event, body, context }) => {
             await client.views.publish({
                 // Use the user ID associated with the event
                 user_id: slack_user.userId,
-                view: authorization_success_screen(
+                view: await authorization_success_screen(
                     currentuser.username,
                     event_ts,
                     conn
